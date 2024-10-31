@@ -3,17 +3,30 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "language")
 public class Language {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    public void setName(String english) {
+    // Геттеры и сеттеры
+
+    public Long getId() {
+        return id;
     }
 
-    // Getters and Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+
 
 

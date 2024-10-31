@@ -5,32 +5,32 @@ import jakarta.persistence.Persistence;
 public class Main {
 
     public static void main(String[] args) {
-        // Создаем EntityManagerFactory
+
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("moviePU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
             FilmService filmService = new FilmService(entityManager);
+
+            // Создаем новый язык
+            Language language = new Language();
+            language.setName("English");
             entityManager.getTransaction().begin();
+            entityManager.persist(language); // Сохраняем язык перед его использованием
+            entityManager.getTransaction().commit();
 
             // Создаем нового покупателя
             filmService.createCustomer("Имя", "Фамилия", "email@example.com");
-
-            // Создаем новый язык и сохраняем его
-            Language language = new Language(); // Предположим, что у вас уже есть созданный язык
-            language.setName("English");
-            entityManager.persist(language); // Сохраняем язык перед его использованием
 
             // Создаем новый фильм
             filmService.addNewFilm("Название фильма", "Описание фильма", language);
 
             // Арендуем фильм (здесь используйте реальные ID)
-            filmService.rentInventory(1L, 1L, 1L); // Замените на реальные идентификаторы
+            filmService.rentFilm(1L, 1L); // Замените на реальные идентификаторы
 
             // Возвращаем фильм (здесь также используйте реальный ID)
             filmService.returnRentedFilm(1L); // Замените на реальный идентификатор аренды
 
-            entityManager.getTransaction().commit();
             System.out.println("Все операции выполнены успешно.");
         } catch (Exception e) {
             // Откат транзакции в случае ошибки
@@ -44,6 +44,7 @@ public class Main {
         }
     }
 }
+
 
 
 

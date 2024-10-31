@@ -1,10 +1,9 @@
 import jakarta.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "film")
 public class Film {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,35 +12,20 @@ public class Film {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "language_id", nullable = false)
+    @JoinColumn(name = "language_id")
     private Language language;
 
     @OneToMany(mappedBy = "film")
-    private List<Rental> rentals;  // Добавляем поле для аренд
+    private Set<Rental> rentals;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
+    // Геттеры и сеттеры
+
+    public Set<Rental> getRentals() {
+        return rentals;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRentals(Set<Rental> rentals) {
+        this.rentals = rentals;
     }
 
     public Language getLanguage() {
@@ -52,14 +36,31 @@ public class Film {
         this.language = language;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
+    public String getDescription() {
+        return description;
     }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
+
 
 
 

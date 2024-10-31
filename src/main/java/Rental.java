@@ -4,18 +4,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "rental")
 public class Rental {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "inventory_id", nullable = false)
-    private Inventory inventory;
+    @JoinColumn(name = "film_id")
+    private Film film;
 
     @Column(name = "rental_date")
     private LocalDateTime rentalDate;
@@ -23,7 +22,8 @@ public class Rental {
     @Column(name = "return_date")
     private LocalDateTime returnDate;
 
-    // Getters and Setters
+    // Геттеры и сеттеры
+
     public Long getId() {
         return id;
     }
@@ -32,20 +32,12 @@ public class Rental {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public LocalDateTime getReturnDate() {
+        return returnDate;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
     }
 
     public LocalDateTime getRentalDate() {
@@ -56,13 +48,22 @@ public class Rental {
         this.rentalDate = rentalDate;
     }
 
-    public LocalDateTime getReturnDate() {
-        return returnDate;
+    public Film getFilm() {
+        return film;
     }
 
-    public void setReturnDate(LocalDateTime returnDate) {
-        this.returnDate = returnDate;
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
+
 
 

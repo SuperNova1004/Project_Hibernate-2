@@ -1,12 +1,9 @@
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,32 +15,15 @@ public class Customer {
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Rental> rentals = new ArrayList<>();
+    // Геттеры и сеттеры
 
 
-    public Long getId() {
-        return id;
+    public LocalDateTime getCreateDate() {
+        return createDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
     }
 
     public String getEmail() {
@@ -54,20 +34,29 @@ public class Customer {
         this.email = email;
     }
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
+
 
