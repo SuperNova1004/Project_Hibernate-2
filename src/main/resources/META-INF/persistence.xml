@@ -1,0 +1,29 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="moviePU" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <!-- Драйвер JDBC -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- URL базы данных -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/movie"/>
+
+            <!-- Имя пользователя и пароль для базы данных -->
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="238143MYSQL!"/>
+
+            <!-- Hibernate диалект -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+
+            <!-- Настройки схемы БД -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- Отладочные свойства -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
