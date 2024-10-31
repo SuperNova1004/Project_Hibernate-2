@@ -1,41 +1,31 @@
-import com.p6spy.engine.logging.Category;
 import jakarta.persistence.*;
-import jdk.javadoc.internal.doclets.formats.html.taglets.SnippetTaglet;
-
 import java.util.List;
 
 @Entity
 @Table(name = "film")
 public class Film {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long filmId;
+    private Long id;
 
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "description")
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "language_id")
-    private SnippetTaglet.Language language;
+    @JoinColumn(name = "language_id", nullable = false)
+    private Language language;
 
-    @OneToOne(mappedBy = "film", cascade = CascadeType.ALL)
-    private FilmText filmText;
+    @OneToMany(mappedBy = "film")
+    private List<Rental> rentals;  // Добавляем поле для аренд
 
-    @ManyToMany
-    @JoinTable(name = "film_category",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories;
-
-    public Long getFilmId() {
-        return filmId;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
-    public void setFilmId(Long filmId) {
-        this.filmId = filmId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -54,28 +44,24 @@ public class Film {
         this.description = description;
     }
 
-    public SnippetTaglet.Language getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(SnippetTaglet.Language language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    public FilmText getFilmText() {
-        return filmText;
-    }
-
-    public void setFilmText(FilmText filmText) {
-        this.filmText = filmText;
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
     }
 }
+
+
+
+
 

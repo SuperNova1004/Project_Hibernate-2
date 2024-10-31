@@ -1,4 +1,6 @@
 import jakarta.persistence.*;
+import jdk.internal.util.ReferencedKeySet;
+
 import java.util.List;
 
 @Entity
@@ -15,5 +17,10 @@ public class Inventory {
     @OneToMany(mappedBy = "inventory")
     private List<Rental> rentals;
 
-    // Getters and setters
+    public ReferencedKeySet<Object> getRentals() {
+
+    }
 }
+
+    // Getters and setters
+
